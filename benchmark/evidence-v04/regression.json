@@ -1,0 +1,114 @@
+{
+  "scope": "self-application, synthetic DOM component; memory storage; no independent agent comparison or production persistence",
+  "browser": "144.0.7559.96",
+  "results": [
+    {
+      "variant": "v03",
+      "case": "repeat_import",
+      "width": 1280,
+      "result": "FAIL",
+      "reason": "repeat import lost previously stored C",
+      "expected": "FAIL",
+      "trace": "1280-v03-repeat_import.zip"
+    },
+    {
+      "variant": "v03",
+      "case": "repeat_archive",
+      "width": 1280,
+      "result": "FAIL",
+      "reason": "Locator expected to be disabled\nActual value: enabled \nCall log:\n  - Expect \"to_be_disabled\" with timeout 500ms\n  - waiting for get_by_role(\"button\", name=\"Approve and start\")\n    4 \u00d7 locator resolved to <button id=\"start\">Approve and start</button>\n      - unexpected value \"enabled\"\n",
+      "expected": "FAIL",
+      "trace": "1280-v03-repeat_archive.zip"
+    },
+    {
+      "variant": "v03",
+      "case": "reload_archive",
+      "width": 1280,
+      "result": "FAIL",
+      "reason": "Locator expected to be disabled\nActual value: enabled \nCall log:\n  - Expect \"to_be_disabled\" with timeout 500ms\n  - waiting for get_by_role(\"button\", name=\"Approve and start\")\n    4 \u00d7 locator resolved to <button id=\"start\">Approve and start</button>\n      - unexpected value \"enabled\"\n",
+      "expected": "FAIL",
+      "trace": "1280-v03-reload_archive.zip"
+    },
+    {
+      "variant": "v04",
+      "case": "repeat_import",
+      "width": 1280,
+      "result": "PASS",
+      "reason": "",
+      "expected": "PASS",
+      "trace": "1280-v04-repeat_import.zip"
+    },
+    {
+      "variant": "v04",
+      "case": "repeat_archive",
+      "width": 1280,
+      "result": "PASS",
+      "reason": "",
+      "expected": "PASS",
+      "trace": "1280-v04-repeat_archive.zip"
+    },
+    {
+      "variant": "v04",
+      "case": "reload_archive",
+      "width": 1280,
+      "result": "PASS",
+      "reason": "",
+      "expected": "PASS",
+      "trace": "1280-v04-reload_archive.zip"
+    },
+    {
+      "variant": "v03",
+      "case": "repeat_import",
+      "width": 390,
+      "result": "FAIL",
+      "reason": "repeat import lost previously stored C",
+      "expected": "FAIL",
+      "trace": "390-v03-repeat_import.zip"
+    },
+    {
+      "variant": "v03",
+      "case": "repeat_archive",
+      "width": 390,
+      "result": "FAIL",
+      "reason": "Locator expected to be disabled\nActual value: enabled \nCall log:\n  - Expect \"to_be_disabled\" with timeout 500ms\n  - waiting for get_by_role(\"button\", name=\"Approve and start\")\n    4 \u00d7 locator resolved to <button id=\"start\">Approve and start</button>\n      - unexpected value \"enabled\"\n",
+      "expected": "FAIL",
+      "trace": "390-v03-repeat_archive.zip"
+    },
+    {
+      "variant": "v03",
+      "case": "reload_archive",
+      "width": 390,
+      "result": "FAIL",
+      "reason": "Locator expected to be disabled\nActual value: enabled \nCall log:\n  - Expect \"to_be_disabled\" with timeout 500ms\n  - waiting for get_by_role(\"button\", name=\"Approve and start\")\n    4 \u00d7 locator resolved to <button id=\"start\">Approve and start</button>\n      - unexpected value \"enabled\"\n",
+      "expected": "FAIL",
+      "trace": "390-v03-reload_archive.zip"
+    },
+    {
+      "variant": "v04",
+      "case": "repeat_import",
+      "width": 390,
+      "result": "PASS",
+      "reason": "",
+      "expected": "PASS",
+      "trace": "390-v04-repeat_import.zip"
+    },
+    {
+      "variant": "v04",
+      "case": "repeat_archive",
+      "width": 390,
+      "result": "PASS",
+      "reason": "",
+      "expected": "PASS",
+      "trace": "390-v04-repeat_archive.zip"
+    },
+    {
+      "variant": "v04",
+      "case": "reload_archive",
+      "width": 390,
+      "result": "PASS",
+      "reason": "",
+      "expected": "PASS",
+      "trace": "390-v04-reload_archive.zip"
+    }
+  ]
+}

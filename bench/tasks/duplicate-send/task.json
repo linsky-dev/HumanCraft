@@ -1,0 +1,6 @@
+{
+  "id": "duplicate-send",
+  "title": "Prevent duplicate submission",
+  "prompt": "Fix duplicate submission of a support request during an asynchronous response. Two rapid activations must not create two requests. The user must receive clear pending and completion feedback. Preserve the Send request button and window.readState() returning {sent, pending}. sent is the number of requests actually recorded.",
+  "critical": true
+}

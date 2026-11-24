@@ -1,0 +1,25 @@
+name: Browser contract regression
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r benchmark/requirements.txt
+      - run: python -m playwright install --with-deps ${{ matrix.engine }}
+      - run: python benchmark/run.py --engine ${{ matrix.engine }} --output evidence
+      - run: python bench/verify.py --calibrate --engine ${{ matrix.engine }} --output evidence/bench-v05
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-${{ matrix.engine }}
+          path: evidence/

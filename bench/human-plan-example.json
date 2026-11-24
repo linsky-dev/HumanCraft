@@ -1,0 +1,20 @@
+[
+  {
+    "participant": "example-01",
+    "task": "draft-switch",
+    "experience": "novice",
+    "order": [
+      "A",
+      "B"
+    ]
+  },
+  {
+    "participant": "example-02",
+    "task": "draft-switch",
+    "experience": "novice",
+    "order": [
+      "B",
+      "A"
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "id": "dialog-focus",
+  "title": "Keyboard exit and focus restoration",
+  "prompt": "Fix the details panel so opening it moves keyboard focus to Close details, pressing Escape closes it, and focus returns to Open details. Preserve mouse close behavior and window.readState() returning {open}.",
+  "critical": false
+}

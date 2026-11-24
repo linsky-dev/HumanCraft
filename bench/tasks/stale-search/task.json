@@ -1,0 +1,6 @@
+{
+  "id": "stale-search",
+  "title": "Stale search results",
+  "prompt": "Fix the search flow in app.html. A slow earlier search must not overwrite the latest query. Preserve fast and slow single-query search, clear status, and results. The UI must support the existing Search field and Search button. Keep window.readState() returning {query, result}.",
+  "critical": false
+}

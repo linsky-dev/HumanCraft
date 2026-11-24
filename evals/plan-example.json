@@ -1,0 +1,1 @@
+{"configs":[{"model":"REPLACE_WITH_PINNED_MODEL","harness":"REPLACE_WITH_CLIENT_VERSION","config":"REPLACE_WITH_CONFIG_HASH"}],"tasks":["HOLDOUT-001","HOLDOUT-002"],"trials":3,"seed":20261124}

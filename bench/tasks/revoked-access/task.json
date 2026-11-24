@@ -1,0 +1,6 @@
+{
+  "id": "revoked-access",
+  "title": "Permission changes after preview",
+  "prompt": "Fix the publish workflow. Publishing must be prevented if access is revoked after a preview, even if preview previously succeeded. Preserve successful publication with access and explain refusal. Keep the Preview, Publish and Revoke access controls and window.readState() returning {published, allowed}. Revoke access is a synthetic administrative fixture, not a normal production affordance.",
+  "critical": true
+}

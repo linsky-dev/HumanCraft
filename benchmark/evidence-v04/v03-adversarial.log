@@ -1,0 +1,144 @@
+test_all_na_blocks (test_adversarial.AdversarialTests.test_all_na_blocks) ... FAIL
+test_empty_activation (test_adversarial.AdversarialTests.test_empty_activation) ... FAIL
+test_empty_identity (test_adversarial.AdversarialTests.test_empty_identity) ... FAIL
+test_fake_evidence_number (test_adversarial.AdversarialTests.test_fake_evidence_number) ... FAIL
+test_fake_evidence_whitespace (test_adversarial.AdversarialTests.test_fake_evidence_whitespace) ... FAIL
+test_invalid_trial (test_adversarial.AdversarialTests.test_invalid_trial) ... FAIL
+test_malformed_activation_truth (test_adversarial.AdversarialTests.test_malformed_activation_truth) ... FAIL
+test_no_evidence_blocks (test_adversarial.AdversarialTests.test_no_evidence_blocks) ... FAIL
+test_optimized_python (test_adversarial.AdversarialTests.test_optimized_python) ... FAIL
+test_space_id (test_adversarial.AdversarialTests.test_space_id) ... FAIL
+test_space_scope (test_adversarial.AdversarialTests.test_space_scope) ... FAIL
+test_unpaired_critical_visible (test_adversarial.AdversarialTests.test_unpaired_critical_visible) ... FAIL
+test_validator_optimized (test_adversarial.AdversarialTests.test_validator_optimized) ... FAIL
+
+======================================================================
+FAIL: test_all_na_blocks (test_adversarial.AdversarialTests.test_all_na_blocks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/hc-v03-replay/HumanCraft-v0.3.0/tests/test_adversarial.py", line 14, in test_all_na_blocks
+    x=sample();x['dimensions']={k:{'score':None,'evidence_type':'na','reason':'not relevant'} for k in x['dimensions']};x['gates']={k:{'status':'na','reason':'not relevant'} for k in x['gates']};self.assertEqual(score(x)['gate_status'],'blocked')
+                                                                                                                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'no_recorded_gate_blocker' != 'blocked'
+- no_recorded_gate_blocker
++ blocked
+
+
+======================================================================
+FAIL: test_empty_activation (test_adversarial.AdversarialTests.test_empty_activation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/hc-v03-replay/HumanCraft-v0.3.0/tests/test_adversarial.py", line 30, in test_empty_activation
+    def test_empty_activation(self): self.assertRaises(ValueError,activation,[],{})
+                                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised by score
+
+======================================================================
+FAIL: test_empty_identity (test_adversarial.AdversarialTests.test_empty_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/hc-v03-replay/HumanCraft-v0.3.0/tests/test_adversarial.py", line 24, in test_empty_identity
+    def test_empty_identity(self): self.assertRaises(ValueError,analyze,[row('baseline',model=' ')])
+                                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised by analyze
+
+======================================================================
+FAIL: test_fake_evidence_number (test_adversarial.AdversarialTests.test_fake_evidence_number)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/hc-v03-replay/HumanCraft-v0.3.0/tests/test_adversarial.py", line 20, in test_fake_evidence_number
+    x=sample();x['dimensions']['outcome']['evidence']=123;self.assertRaises(ValueError,score,x)
+                                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised by score
+
+======================================================================
+FAIL: test_fake_evidence_whitespace (test_adversarial.AdversarialTests.test_fake_evidence_whitespace)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/hc-v03-replay/HumanCraft-v0.3.0/tests/test_adversarial.py", line 18, in test_fake_evidence_whitespace
+    x=sample();x['gates']['integrity']['evidence']=['  '];self.assertRaises(ValueError,score,x)
+                                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised by score
+
+======================================================================
+FAIL: test_invalid_trial (test_adversarial.AdversarialTests.test_invalid_trial)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/hc-v03-replay/HumanCraft-v0.3.0/tests/test_adversarial.py", line 23, in test_invalid_trial
+    def test_invalid_trial(self): self.assertRaises(ValueError,analyze,[row('baseline',trial=True)])
+                                  ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised by analyze
+
+======================================================================
+FAIL: test_malformed_activation_truth (test_adversarial.AdversarialTests.test_malformed_activation_truth)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/hc-v03-replay/HumanCraft-v0.3.0/tests/test_adversarial.py", line 29, in test_malformed_activation_truth
+    def test_malformed_activation_truth(self): self.assertRaises(ValueError,activation,[{'id':'a','should_trigger':'false'}],{'a':True})
+                                               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised by score
+
+======================================================================
+FAIL: test_no_evidence_blocks (test_adversarial.AdversarialTests.test_no_evidence_blocks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/hc-v03-replay/HumanCraft-v0.3.0/tests/test_adversarial.py", line 16, in test_no_evidence_blocks
+    x=sample();x['dimensions']={k:{'score':None} for k in x['dimensions']};self.assertEqual(score(x)['gate_status'],'blocked')
+                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'no_recorded_gate_blocker' != 'blocked'
+- no_recorded_gate_blocker
++ blocked
+
+
+======================================================================
+FAIL: test_optimized_python (test_adversarial.AdversarialTests.test_optimized_python)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/hc-v03-replay/HumanCraft-v0.3.0/tests/test_adversarial.py", line 26, in test_optimized_python
+    code='from paired import analyze; analyze('+repr([row('candidate',True,critical_failure=True)])+')';p=subprocess.run([sys.executable,'-O','-c',code],cwd=root/'evals',capture_output=True);self.assertNotEqual(p.returncode,0)
+                                                                                                                                                                                               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_space_id (test_adversarial.AdversarialTests.test_space_id)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/hc-v03-replay/HumanCraft-v0.3.0/tests/test_adversarial.py", line 32, in test_space_id
+    x=events(['start','authorize','commit','success']);x['events'][2]['write_id']=' w ';self.assertRaises(ValueError,check,x)
+                                                                                        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised by check
+
+======================================================================
+FAIL: test_space_scope (test_adversarial.AdversarialTests.test_space_scope)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/hc-v03-replay/HumanCraft-v0.3.0/tests/test_adversarial.py", line 34, in test_space_scope
+    x=events(['start','cancel']);x['events'][1]['scope']='r ';self.assertRaises(ValueError,check,x)
+                                                              ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised by check
+
+======================================================================
+FAIL: test_unpaired_critical_visible (test_adversarial.AdversarialTests.test_unpaired_critical_visible)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/hc-v03-replay/HumanCraft-v0.3.0/tests/test_adversarial.py", line 22, in test_unpaired_critical_visible
+    x=analyze([row('candidate',critical_failure=True)]);self.assertEqual(x['status'],'PARTIAL');self.assertEqual(x['candidate_critical_failures'],1);self.assertEqual(x['strata'][0]['arms']['candidate']['critical_failures'],1)
+                                                        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'NOT_RUN' != 'PARTIAL'
+- NOT_RUN
++ PARTIAL
+
+
+======================================================================
+FAIL: test_validator_optimized (test_adversarial.AdversarialTests.test_validator_optimized)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/hc-v03-replay/HumanCraft-v0.3.0/tests/test_adversarial.py", line 28, in test_validator_optimized
+    p=subprocess.run([sys.executable,'-O',str(root/'scripts/validate.py')],capture_output=True);self.assertNotEqual(p.returncode,0)
+                                                                                                ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0
+
+----------------------------------------------------------------------
+Ran 13 tests in 2.117s
+
+FAILED (failures=13)

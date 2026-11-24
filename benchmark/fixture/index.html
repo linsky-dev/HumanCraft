@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HumanCraft workflow lab</title>
+<style>body{font:16px system-ui;color:#172b28;background:#f5f7f6;margin:0}main{max-width:780px;margin:auto;padding:20px}section{background:white;border:1px solid #aabbb4;border-radius:8px;padding:16px;margin:12px 0}h1,h2{margin:0 0 12px}button,input,select{font:inherit;max-width:100%;padding:8px;margin:4px 0;box-sizing:border-box}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #176b4a;outline-offset:3px}label,output{display:block}button{border:1px solid #52736a;background:#eff5f2;border-radius:4px}button[disabled]{opacity:.6}</style>
+<main><h1>Workflow lab</h1><p>Synthetic data only. No external services.</p>
+<section><h2>Workspace settings</h2><label for="mode">Target workspace</label><select id="mode"><option>Personal</option><option>Team</option></select><p id="scope"></p><button id="apply">Apply setting</button><output id="applied"></output></section>
+<section><h2>Draft</h2><label for="draft">Document note</label><input id="draft"><output id="draftstatus"></output></section>
+<section><h2>Import</h2><button id="import">Import 3 records</button><button id="retry" disabled>Retry failed record</button><output id="batch"></output></section>
+<section><h2>AI proposal</h2><p>Proposed action: archive record A-17</p><button id="start">Approve and start</button><button id="cancel" disabled>Cancel pending action</button><output id="ai"></output><p id="archive"></p></section>
+<section><h2>Background check</h2><button id="check">Start check</button><output id="wait"></output><button id="fail">Simulate dependency failure</button></section>
+<section><h2>Review handoff</h2><label for="owner">Assigned reviewer</label><select id="owner"><option value="">Unassigned</option><option>Reviewer B</option></select><button id="submit">Submit for review</button><output id="review"></output></section></main>
+<script>
+const $=id=>document.getElementById(id), bad=window.__hcFault||new URLSearchParams(location.search).get('fault')||'', is=x=>bad===x;
+const status=(id,t)=>$(id).textContent=t; const storage=window.__hcStorage||localStorage; const get=(k,f)=>JSON.parse(storage.getItem(k)||JSON.stringify(f)), put=(k,v)=>storage.setItem(k,JSON.stringify(v)); window.__hcRead=(k)=>storage.getItem(k);
+function scope(){status('scope',is('mode')?'Settings':'Active target: '+$('mode').value)} $('mode').onchange=scope; scope();
+$('apply').onclick=()=>{let x=get('settings',{});x[is('mode')?'Personal':$('mode').value]=true;put('settings',x);status('applied','Applied to '+$('mode').value)};
+$('draft').value=is('draft')?'':get('draft',''); $('draft').oninput=()=>{if(!is('draft'))put('draft',$('draft').value);status('draftstatus','Draft saved')};
+let records=get('records',[]);function showBatch(){status('batch',records.length+' stored; '+(records.includes('C')?'0 failed':'1 failed: C'));$('retry').disabled=records.includes('C')}
+$('import').onclick=()=>{records=[...new Set([...records,'A','B'])];put('records',records);showBatch()}; $('retry').onclick=()=>{records=is('batch')?records.concat(['A','B','C']):[...new Set([...records,'C'])];put('records',records);showBatch()};
+let generation=0;function archive(){const archived=get('archived',false);status('archive',archived?'Record A-17 archived':'Record A-17 active');$('start').disabled=archived}archive();
+$('start').onclick=()=>{if(get('archived',false))return;let token=++generation;$('cancel').disabled=false;$('start').disabled=true;status('ai','Pending: archive A-17');setTimeout(()=>{if(!is('cancel')&&token!==generation)return;put('archived',true);archive();status('ai','Archived A-17');$('cancel').disabled=true;$('start').disabled=true},700)};
+$('cancel').onclick=()=>{generation++;status('ai','Cancelled before commit');$('cancel').disabled=true;$('start').disabled=false};
+$('check').onclick=()=>status('wait',is('wait')?'99% complete':'Checking records; duration unknown');$('fail').onclick=()=>status('wait',is('wait')?'Success':'Check failed: dependency unavailable. No changes made. Start check to retry.');
+$('submit').onclick=()=>status('review',is('handoff')?'Approved':$('owner').value?'Awaiting '+$('owner').value:'Choose a reviewer before submitting');
+if(is('a11y'))document.querySelector('label[for=draft]').remove();
+</script></html>

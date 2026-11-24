@@ -1,0 +1,6 @@
+{
+  "id": "draft-switch",
+  "title": "Switch records without losing notes",
+  "prompt": "Fix record switching so unsaved text is retained separately for each record in the current session, and never appears under the wrong record. Preserve editing of both records. Keep the Record selector, Note field and window.readState() returning {active, notes} where notes maps A and B to their draft text.",
+  "critical": true
+}

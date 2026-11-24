@@ -1,0 +1,209 @@
+{
+  "status": "INCOMPLETE",
+  "plan_sha256": "ee35951e4539916bf60dff8f3f9ed14e7ad93dad1ed60b3d52a66c38b1889528",
+  "planned": 24,
+  "observed": 0,
+  "missing": [
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-001",
+      "trial": 1,
+      "arm": "baseline"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-001",
+      "trial": 1,
+      "arm": "candidate"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-001",
+      "trial": 1,
+      "arm": "generic"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-001",
+      "trial": 1,
+      "arm": "previous"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-001",
+      "trial": 2,
+      "arm": "baseline"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-001",
+      "trial": 2,
+      "arm": "candidate"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-001",
+      "trial": 2,
+      "arm": "generic"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-001",
+      "trial": 2,
+      "arm": "previous"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-001",
+      "trial": 3,
+      "arm": "baseline"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-001",
+      "trial": 3,
+      "arm": "candidate"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-001",
+      "trial": 3,
+      "arm": "generic"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-001",
+      "trial": 3,
+      "arm": "previous"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-002",
+      "trial": 1,
+      "arm": "baseline"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-002",
+      "trial": 1,
+      "arm": "candidate"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-002",
+      "trial": 1,
+      "arm": "generic"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-002",
+      "trial": 1,
+      "arm": "previous"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-002",
+      "trial": 2,
+      "arm": "baseline"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-002",
+      "trial": 2,
+      "arm": "candidate"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-002",
+      "trial": 2,
+      "arm": "generic"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-002",
+      "trial": 2,
+      "arm": "previous"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-002",
+      "trial": 3,
+      "arm": "baseline"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-002",
+      "trial": 3,
+      "arm": "candidate"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-002",
+      "trial": 3,
+      "arm": "generic"
+    },
+    {
+      "model": "REPLACE_WITH_PINNED_MODEL",
+      "harness": "REPLACE_WITH_CLIENT_VERSION",
+      "config": "REPLACE_WITH_CONFIG_HASH",
+      "task": "HOLDOUT-002",
+      "trial": 3,
+      "arm": "previous"
+    }
+  ],
+  "unexpected": [],
+  "candidate_critical_failures": 0,
+  "gate": "BLOCKED",
+  "analysis": {
+    "scope": "independent observed runs only; descriptive paired statistics, no significance or causal claim from synthetic input",
+    "status": "NOT_RUN",
+    "candidate_critical_failures": 0,
+    "strata": []
+  }
+}

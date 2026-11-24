@@ -1,0 +1,6 @@
+{
+  "id": "undo-trash",
+  "title": "Recover a mistakenly removed item",
+  "prompt": "Fix deletion so a user can restore the just-removed record using Undo removal. The restored record must be actually present, not only a success message. Preserve normal removal and window.readState() returning {items} with unique record IDs.",
+  "critical": true
+}

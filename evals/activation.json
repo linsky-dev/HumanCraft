@@ -1,0 +1,122 @@
+[
+  {
+    "id": "TR-01",
+    "query": "这个录入页面老人不会用，帮我改一下",
+    "should_trigger": true
+  },
+  {
+    "id": "TR-02",
+    "query": "Make the first-run experience less confusing",
+    "should_trigger": true
+  },
+  {
+    "id": "TR-03",
+    "query": "用户重复点击提交导致重复扣库存",
+    "should_trigger": true
+  },
+  {
+    "id": "TR-04",
+    "query": "Design a safe cancel flow for an AI agent",
+    "should_trigger": true
+  },
+  {
+    "id": "TR-05",
+    "query": "Windows客户端安装路径无效时如何引导恢复",
+    "should_trigger": true
+  },
+  {
+    "id": "TR-06",
+    "query": "Audit keyboard navigation of this dialog",
+    "should_trigger": true
+  },
+  {
+    "id": "TR-07",
+    "query": "Improve approval handoff across three teams",
+    "should_trigger": true
+  },
+  {
+    "id": "TR-08",
+    "query": "这个表格密度太高，新手和专家都要用",
+    "should_trigger": true
+  },
+  {
+    "id": "TR-09",
+    "query": "Why do customers abandon the onboarding step?",
+    "should_trigger": true
+  },
+  {
+    "id": "TR-10",
+    "query": "Review this design for misleading progress",
+    "should_trigger": true
+  },
+  {
+    "id": "TR-11",
+    "query": "Rename an internal SQL variable",
+    "should_trigger": false
+  },
+  {
+    "id": "TR-12",
+    "query": "Compute 17 times 38",
+    "should_trigger": false
+  },
+  {
+    "id": "TR-13",
+    "query": "Translate this paragraph to French",
+    "should_trigger": false
+  },
+  {
+    "id": "TR-14",
+    "query": "Fix a pure sorting algorithm with no UX change",
+    "should_trigger": false
+  },
+  {
+    "id": "TR-15",
+    "query": "Explain what HTTP status 503 means",
+    "should_trigger": false
+  },
+  {
+    "id": "TR-16",
+    "query": "Create a logo only, no product interaction",
+    "should_trigger": false
+  },
+  {
+    "id": "TR-17",
+    "query": "Change this internal function from recursion to iteration",
+    "should_trigger": false
+  },
+  {
+    "id": "TR-18",
+    "query": "写一首关于设计的诗",
+    "should_trigger": false
+  },
+  {
+    "id": "TR-19",
+    "query": "Compare two database indexing strategies only",
+    "should_trigger": false
+  },
+  {
+    "id": "TR-20",
+    "query": "Summarize a public news article",
+    "should_trigger": false
+  },
+  {
+    "id": "TR-21",
+    "query": "Make this account recovery button text clearer without changing policy",
+    "should_trigger": true
+  },
+  {
+    "id": "TR-22",
+    "query": "Review error text and retry semantics of file uploads",
+    "should_trigger": true
+  },
+  {
+    "id": "TR-23",
+    "query": "只调整图片的白平衡，不改变交互",
+    "should_trigger": false
+  },
+  {
+    "id": "TR-24",
+    "query": "Generate random test integers",
+    "should_trigger": false
+  }
+]

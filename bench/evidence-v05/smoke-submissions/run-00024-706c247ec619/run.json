@@ -1,0 +1,14 @@
+{
+  "model": "NOT-A-MODEL-reference-smoke",
+  "harness": "manual-fixture",
+  "config": "calibration-only",
+  "status": "completed",
+  "operator": "self-authored fixture smoke only",
+  "seconds": null,
+  "tokens": null,
+  "skill_invoked": null,
+  "packet": "run-00024-706c247ec619",
+  "app_sha256": "686e11b122a5be29ca38ad17ec74817f65edefb49a008ebbb42bec14eeddf657",
+  "plan_sha256": "8854d93978a78fe0e7eb64b53f48bcca7aefb01f694c3561c6e0a5a07ba0d434",
+  "provenance": "operator-attested; not cryptographically verified agent identity"
+}

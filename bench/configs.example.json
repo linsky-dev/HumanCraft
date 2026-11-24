@@ -1,0 +1,12 @@
+[
+  {
+    "model": "example-model-1",
+    "harness": "example-cli-1",
+    "config": "fixed-budget-fresh-profile"
+  },
+  {
+    "model": "example-model-2",
+    "harness": "example-cli-2",
+    "config": "fixed-budget-fresh-profile"
+  }
+]

@@ -1,0 +1,495 @@
+[
+  {
+    "id": "HC-01",
+    "topic": "账户恢复",
+    "prompt": "个人模式管理员忘记账号和密码，无法登录生成凭证。重新设计。",
+    "should_trigger": true,
+    "assertions": [
+      "提供登录前入口",
+      "独立身份验证",
+      "不绕过权限",
+      "覆盖失窃设备测试"
+    ]
+  },
+  {
+    "id": "HC-02",
+    "topic": "路径迁移",
+    "prompt": "旧版软件装在已经拔掉的E盘，新版要自由选择安装和数据目录。",
+    "should_trigger": true,
+    "assertions": [
+      "区分安装与数据路径",
+      "处理失效旧路径",
+      "保留数据并验证回滚",
+      "不杀任意进程"
+    ]
+  },
+  {
+    "id": "HC-03",
+    "topic": "导入",
+    "prompt": "批量导入500条数据，其中20条错误，重新设计反馈。",
+    "should_trigger": true,
+    "assertions": [
+      "呈现部分成功",
+      "定位问题行",
+      "保留输入",
+      "避免重复写入"
+    ]
+  },
+  {
+    "id": "HC-04",
+    "topic": "删除",
+    "prompt": "设计批量删除档案界面。",
+    "should_trigger": true,
+    "assertions": [
+      "明确范围",
+      "预览影响",
+      "权限校验",
+      "恢复或不可逆说明"
+    ]
+  },
+  {
+    "id": "HC-05",
+    "topic": "等待",
+    "prompt": "生成报告耗时未知，如何设计等待体验？",
+    "should_trigger": true,
+    "assertions": [
+      "真实状态",
+      "不伪造百分比",
+      "取消或恢复条件",
+      "完成反馈"
+    ]
+  },
+  {
+    "id": "HC-06",
+    "topic": "权限",
+    "prompt": "普通用户看到管理员才能执行的功能，怎么设计？",
+    "should_trigger": true,
+    "assertions": [
+      "解释权限",
+      "服务端校验",
+      "可行申请路径"
+    ]
+  },
+  {
+    "id": "HC-07",
+    "topic": "复杂系统",
+    "prompt": "专业核验工具有30个功能，想极简化。",
+    "should_trigger": true,
+    "assertions": [
+      "保留必要功能",
+      "按任务组织",
+      "兼顾专家",
+      "验证效率"
+    ]
+  },
+  {
+    "id": "HC-08",
+    "topic": "探索",
+    "prompt": "用户要求增加一键处理所有业务按钮，如何设计？",
+    "should_trigger": true,
+    "assertions": [
+      "先分析目标和风险",
+      "比较方案",
+      "按影响分级"
+    ]
+  },
+  {
+    "id": "HC-09",
+    "topic": "仪表盘",
+    "prompt": "Design an operations dashboard for mixed-freshness data.",
+    "should_trigger": true,
+    "assertions": [
+      "show units and freshness",
+      "distinguish missing from zero",
+      "decision-first hierarchy"
+    ]
+  },
+  {
+    "id": "HC-10",
+    "topic": "新手",
+    "prompt": "首次启动向导有12个配置项，新手经常退出。",
+    "should_trigger": true,
+    "assertions": [
+      "安全默认",
+      "必要项优先",
+      "支持后续修改",
+      "不强行隐藏关键设置"
+    ]
+  },
+  {
+    "id": "HC-11",
+    "topic": "中断",
+    "prompt": "A long multi-step form is interrupted by a power outage.",
+    "should_trigger": true,
+    "assertions": [
+      "draft persistence",
+      "resume state",
+      "duplicate prevention",
+      "test interrupted writes"
+    ]
+  },
+  {
+    "id": "HC-12",
+    "topic": "无障碍",
+    "prompt": "Audit a modal with icon-only actions and keyboard traps.",
+    "should_trigger": true,
+    "assertions": [
+      "accessible names",
+      "focus management",
+      "keyboard exit where appropriate",
+      "manual verification"
+    ]
+  },
+  {
+    "id": "HC-13",
+    "topic": "颜色",
+    "prompt": "差异核验仅用红绿表示结果。",
+    "should_trigger": true,
+    "assertions": [
+      "非颜色线索",
+      "对比度",
+      "键盘或辅助技术验证"
+    ]
+  },
+  {
+    "id": "HC-14",
+    "topic": "AI审批",
+    "prompt": "Agent automatically sends official emails based on uncertain classification.",
+    "should_trigger": true,
+    "assertions": [
+      "bounded authority",
+      "meaningful review",
+      "preview recipient and content",
+      "uncertainty and audit"
+    ]
+  },
+  {
+    "id": "HC-15",
+    "topic": "AI出错",
+    "prompt": "AI 给出错误建议后，用户无法纠正。",
+    "should_trigger": true,
+    "assertions": [
+      "可纠正",
+      "解释依据和限制",
+      "手动接管",
+      "错误建议测试"
+    ]
+  },
+  {
+    "id": "HC-16",
+    "topic": "AI中断",
+    "prompt": "AI agent has tool failures halfway through updating records.",
+    "should_trigger": true,
+    "assertions": [
+      "partial result",
+      "safe retry",
+      "no false success",
+      "recovery and scope"
+    ]
+  },
+  {
+    "id": "HC-17",
+    "topic": "情感",
+    "prompt": "做一个银行转账成功页面，要有趣好玩。",
+    "should_trigger": true,
+    "assertions": [
+      "确认真实结果",
+      "信任和克制",
+      "可核对凭据",
+      "不牺牲可用性"
+    ]
+  },
+  {
+    "id": "HC-18",
+    "topic": "服务",
+    "prompt": "患者在预约、签到、候诊之间反复填资料。",
+    "should_trigger": true,
+    "assertions": [
+      "跨触点流程",
+      "减少重复",
+      "隐私",
+      "异常交接"
+    ]
+  },
+  {
+    "id": "HC-19",
+    "topic": "国际化",
+    "prompt": "Design a compact app for English, Chinese and Arabic.",
+    "should_trigger": true,
+    "assertions": [
+      "locale expansion",
+      "RTL and mapping",
+      "avoid universal assumptions"
+    ]
+  },
+  {
+    "id": "HC-20",
+    "topic": "高风险",
+    "prompt": "简化审批，是否可移除所有确认？",
+    "should_trigger": true,
+    "assertions": [
+      "按风险分级",
+      "保留高影响校验",
+      "避免确认疲劳"
+    ]
+  },
+  {
+    "id": "HC-21",
+    "topic": "旧版",
+    "prompt": "现有功能经过实机验证，只需要修复一个 UI 缺陷。",
+    "should_trigger": true,
+    "assertions": [
+      "最小改动",
+      "保留既有规则",
+      "针对性回归"
+    ]
+  },
+  {
+    "id": "HC-22",
+    "topic": "数据可视化",
+    "prompt": "A chart hides low-confidence values and displays missing values as zero.",
+    "should_trigger": true,
+    "assertions": [
+      "separate missing and zero",
+      "uncertainty",
+      "accessible encoding",
+      "test"
+    ]
+  },
+  {
+    "id": "HC-23",
+    "topic": "无证据",
+    "prompt": "只有一张截图，给整套系统打100分。",
+    "should_trigger": true,
+    "assertions": [
+      "区分检查和测试",
+      "未验证标未知",
+      "不宣称完整成熟度"
+    ]
+  },
+  {
+    "id": "HC-24",
+    "topic": "离线",
+    "prompt": "本地离线软件想增加智能辅助。",
+    "should_trigger": true,
+    "assertions": [
+      "遵守离线",
+      "不暗中上传",
+      "失败降级",
+      "用户控制"
+    ]
+  },
+  {
+    "id": "NEG-01",
+    "topic": "hard negative",
+    "prompt": "计算 12×37。",
+    "should_trigger": false,
+    "assertions": [
+      "不主动加载完整设计工作流；直接完成原任务"
+    ]
+  },
+  {
+    "id": "NEG-02",
+    "topic": "hard negative",
+    "prompt": "Translate this sentence into French: I like coffee.",
+    "should_trigger": false,
+    "assertions": [
+      "不主动加载完整设计工作流；直接完成原任务"
+    ]
+  },
+  {
+    "id": "NEG-03",
+    "topic": "hard negative",
+    "prompt": "Refactor an internal pure sorting function without changing user-facing behavior.",
+    "should_trigger": false,
+    "assertions": [
+      "不主动加载完整设计工作流；直接完成原任务"
+    ]
+  },
+  {
+    "id": "NEG-04",
+    "topic": "hard negative",
+    "prompt": "Explain TCP congestion control.",
+    "should_trigger": false,
+    "assertions": [
+      "不主动加载完整设计工作流；直接完成原任务"
+    ]
+  },
+  {
+    "id": "NEG-05",
+    "topic": "hard negative",
+    "prompt": "列出圆周率的前十位。",
+    "should_trigger": false,
+    "assertions": [
+      "不主动加载完整设计工作流；直接完成原任务"
+    ]
+  },
+  {
+    "id": "NEG-06",
+    "topic": "hard negative",
+    "prompt": "Format this JSON without changing values.",
+    "should_trigger": false,
+    "assertions": [
+      "不主动加载完整设计工作流；直接完成原任务"
+    ]
+  },
+  {
+    "id": "NEG-07",
+    "topic": "hard negative",
+    "prompt": "修复纯后端单元测试中的拼写错误，不影响用户流程。",
+    "should_trigger": false,
+    "assertions": [
+      "不主动加载完整设计工作流；直接完成原任务"
+    ]
+  },
+  {
+    "id": "NEG-08",
+    "topic": "hard negative",
+    "prompt": "Summarize this weather report.",
+    "should_trigger": false,
+    "assertions": [
+      "不主动加载完整设计工作流；直接完成原任务"
+    ]
+  },
+  {
+    "id": "HC-33",
+    "topic": "习惯性失误",
+    "prompt": "快捷键在两个模式下分别操作不同对象，用户经常切错。",
+    "should_trigger": true,
+    "assertions": [
+      "持续显示模式",
+      "验证实际目标",
+      "中断后恢复",
+      "避免同形危险操作"
+    ]
+  },
+  {
+    "id": "HC-34",
+    "topic": "排队公平",
+    "prompt": "多个部门提交报告，后台有优先级和等待队列。",
+    "should_trigger": true,
+    "assertions": [
+      "说明优先级",
+      "真实队列状态",
+      "不伪造预计时间",
+      "提供可行退出"
+    ]
+  },
+  {
+    "id": "HC-35",
+    "topic": "跨角色交接",
+    "prompt": "审批人在提交后离岗，用户不知道找谁。",
+    "should_trigger": true,
+    "assertions": [
+      "显示责任方",
+      "授权转交",
+      "保留上下文",
+      "不能静默通过"
+    ]
+  },
+  {
+    "id": "HC-36",
+    "topic": "反馈过载",
+    "prompt": "批量同步100条记录，页面弹出100个通知。",
+    "should_trigger": true,
+    "assertions": [
+      "聚合普通状态",
+      "重要异常独立",
+      "保留历史",
+      "不劫持焦点"
+    ]
+  },
+  {
+    "id": "HC-37",
+    "topic": "根因诊断",
+    "prompt": "用户说提交太慢，截图显示按钮灰色。",
+    "should_trigger": true,
+    "assertions": [
+      "区分观察与猜测",
+      "至少两种解释",
+      "可证伪测试",
+      "不先认定根因"
+    ]
+  },
+  {
+    "id": "HC-38",
+    "topic": "迟到响应",
+    "prompt": "取消AI删除任务后网络迟到返回成功。",
+    "should_trigger": true,
+    "assertions": [
+      "实际写入验证",
+      "取消边界",
+      "状态一致",
+      "不谎称撤销"
+    ]
+  },
+  {
+    "id": "HC-39",
+    "topic": "自然映射",
+    "prompt": "表格调整列宽和排序使用同一控件。",
+    "should_trigger": true,
+    "assertions": [
+      "区分动作",
+      "自然对应",
+      "键盘支持",
+      "验证不误操作"
+    ]
+  },
+  {
+    "id": "HC-40",
+    "topic": "服务蓝图",
+    "prompt": "客户提交申请后跨三个部门，缺资料要重交全部。",
+    "should_trigger": true,
+    "assertions": [
+      "映射前后台",
+      "保留已完成数据",
+      "明确退回原因",
+      "局部重试"
+    ]
+  },
+  {
+    "id": "HC-41",
+    "topic": "无障碍",
+    "prompt": "错误状态只有红色边框，键盘提交后焦点丢失。",
+    "should_trigger": true,
+    "assertions": [
+      "非色彩提示",
+      "明确错误关联",
+      "恢复焦点",
+      "键盘测试"
+    ]
+  },
+  {
+    "id": "HC-42",
+    "topic": "用户控制",
+    "prompt": "AI自动替用户发送所有邮件，用户只看见成功提示。",
+    "should_trigger": true,
+    "assertions": [
+      "权限边界",
+      "高风险确认",
+      "真实取消",
+      "收据与实际一致"
+    ]
+  },
+  {
+    "id": "HC-43",
+    "topic": "反思体验",
+    "prompt": "学习应用连续打卡中断后显示失败并清空成就。",
+    "should_trigger": true,
+    "assertions": [
+      "避免羞辱",
+      "保留真实进度",
+      "可恢复计划",
+      "不操纵用户"
+    ]
+  },
+  {
+    "id": "HC-44",
+    "topic": "纯后端",
+    "prompt": "优化内部哈希函数，不改变任何用户行为。",
+    "should_trigger": false,
+    "assertions": [
+      "不引入无关设计审查"
+    ]
+  }
+]

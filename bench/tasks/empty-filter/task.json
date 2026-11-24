@@ -1,0 +1,6 @@
+{
+  "id": "empty-filter",
+  "title": "Recover from an empty filter",
+  "prompt": "Fix the no-results flow so users can clear a filter and return to the original list. Explain empty results and provide the existing Clear filter action whenever appropriate. Preserve filtering and window.readState() returning {filter, items}.",
+  "critical": false
+}

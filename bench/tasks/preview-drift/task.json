@@ -1,0 +1,6 @@
+{
+  "id": "preview-drift",
+  "title": "Approval cannot silently change target",
+  "prompt": "Fix the batch approval flow so changing the selected target after review invalidates the old approval. A fresh review must permit execution on the newly selected target. Preserve the Target selector, Review and Execute buttons and window.readState() returning {applied, target}. applied is an array of actually executed targets.",
+  "critical": true
+}
