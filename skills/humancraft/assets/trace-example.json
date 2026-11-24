@@ -1,0 +1,30 @@
+{
+  "events": [
+    {
+      "seq": 1,
+      "op": "demo-1",
+      "scope": "record-42",
+      "kind": "start"
+    },
+    {
+      "seq": 2,
+      "op": "demo-1",
+      "scope": "record-42",
+      "kind": "authorize",
+      "allowed": true
+    },
+    {
+      "seq": 3,
+      "op": "demo-1",
+      "scope": "record-42",
+      "kind": "commit",
+      "write_id": "effect-1"
+    },
+    {
+      "seq": 4,
+      "op": "demo-1",
+      "scope": "record-42",
+      "kind": "success"
+    }
+  ]
+}
