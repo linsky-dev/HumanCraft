@@ -1,4 +1,5 @@
 import hashlib
+import importlib.util
 import json
 import subprocess
 import sys
@@ -9,10 +10,10 @@ from pathlib import Path
 
 import yaml
 
-
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "scripts"))
-import package
+PACKAGE_SPEC = importlib.util.spec_from_file_location("humancraft_package", ROOT / "scripts/package.py")
+package = importlib.util.module_from_spec(PACKAGE_SPEC)
+PACKAGE_SPEC.loader.exec_module(package)
 
 
 def read_frontmatter(markdown):
