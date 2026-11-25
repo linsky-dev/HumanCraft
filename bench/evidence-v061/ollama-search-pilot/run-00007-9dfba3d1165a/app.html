@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stale search results</title>
+<style>
+  body { font: 16px system-ui; color: #142c26; background: #f7faf8; margin: 0; }
+  main { max-width: 680px; padding: 24px; margin: auto; }
+  label, output { display: block; margin: 8px 0; }
+  button, input, select, textarea { font: inherit; padding: 8px; margin: 4px 4px 4px 0; max-width: 100%; box-sizing: border-box; }
+  button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid #126e55; outline-offset: 2px; }
+  button { background: #e6f0eb; border: 1px solid #456c5c; border-radius: 5px; }
+  button:disabled { opacity: .5; }
+  [role=dialog] { border: 1px solid #456c5c; padding: 16px; }
+</style>
+<main>
+  <h1>Stale search results</h1>
+  <label for="q">Search records</label>
+  <input id="q">
+  <button id="go">Search</button>
+  <output id="status" role="status"></output>
+  <p id="result"></p>
+</main>
+<script>
+  // HumanCraft: Interaction & Verification
+  // 1. Ground: Inspect existing state interface.
+  // 2. Frame: The problem is that a slow search overwrites the latest query.
+  //    We must preserve the latest query and status while processing.
+  // 3. Explore: Use a state object to track the current query and the processing status.
+  // 4. Specify:
+  //    - Entry: User types query and clicks Search.
+  //    - Action: Update state.query, set status to "Searching...", start timeout.
+  //    - Outcome: On timeout, update state.result and result text.
+  //    - Recovery: If user types again, update state.query immediately.
+  //    - State Interface: window.readState() returns { query, result }.
+  // 5. Build: Implement the logic.
+  // 6. Challenge: Test rapid typing, slow vs fast queries.
+  // 7. Verify: Ensure state is consistent.
+
+  const field = document.getElementById("q");
+  const go = document.getElementById("go");
+  const out = document.getElementById("status");
+  const result = document.getElementById("result");
+
+  // State management: separate query from result to prevent overwriting
+  let seq = 0;
+  let state = {
+    query: "",
+    result: ""
+  };
+
+  // Helper to update UI safely
+  function updateUI() {
+    result.textContent = state.result;
+    out.textContent = state.query ? `Results for ${state.query}` : "";
+  }
+
+  go.onclick = () => {
+    const q = field.value;
+    const n = ++seq;
+    
+    // Update the query immediately so it's preserved if a new search starts
+    state.query = q;
+    
+    // Update status to indicate processing
+    out.textContent = "Searching " + q;
+    
+    // Simulate network delay based on query content
+    const delay = q === "alpha" ? 180 : 30;
+    
+    setTimeout(() => {
+      // Only update result if this is the latest sequence number
+      // This prevents slow searches from overwriting fast ones if the user types again
+      if (n === seq) {
+        state.result = q;
+        updateUI();
+      }
+    }, delay);
+  };
+
+  // Allow updating state immediately on input change (optional UX improvement)
+  field.oninput = () => {
+    state.query = field.value;
+    // Optional: Clear result immediately to show "live" typing state
+    // if (field.value) {
+    //   state.result = "";
+    //   updateUI();
+    // }
+  };
+
+  window.readState = () => state;
+</script>
+</html>

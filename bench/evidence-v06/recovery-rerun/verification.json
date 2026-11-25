@@ -1,0 +1,28 @@
+{
+  "verification_local_date": "2026-11-25",
+  "baseline_commit": "22077c0971d512eb5eb5fdfe5f2d3da44d8d2a15",
+  "public_restore_commit": "cabc9ae8ce22f170f02d964b2027e1124fa1538c",
+  "core_tree": "95cf7db7afcd233449fcab6f47cb401df8d7a61d",
+  "format_command": "python scripts/validate.py",
+  "format": {
+    "markdown": 40,
+    "behavior_cases": 44,
+    "activation_cases": 24,
+    "behavior_contracts": 12
+  },
+  "unit_command": "python -m unittest discover -s tests -v",
+  "unit_pass": 77,
+  "browser_command": "python bench/verify.py --calibrate --output <new-dir> --executable <chrome-executable>",
+  "playwright": "1.49.1",
+  "chrome": "157.0.8103.79",
+  "expected_outcomes": 64,
+  "normal_and_reference_pass": 48,
+  "expected_faults_detected": 16,
+  "results_sha256": "f422a6f14a0fd8cfd745453112d015e966f984b2ca14009eacafddd516b22b1f",
+  "legacy_browser_command": "python benchmark/run.py --engine chromium --executable <chrome-executable> --output <new-dir>",
+  "legacy_playwright": "1.57.0",
+  "legacy_reference_pass": 14,
+  "legacy_mutants_detected": 14,
+  "independence": "Reviewer independently reran 64-case calibration using fresh Chrome contexts and checked evidence hashes.",
+  "scope": "Synthetic development feedback and controls; not causal uplift or human usability."
+}

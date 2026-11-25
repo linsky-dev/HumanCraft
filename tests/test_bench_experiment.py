@@ -1,5 +1,6 @@
 import importlib.util, json, tempfile, unittest
 from pathlib import Path
+from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('hc_experiment',ROOT/'bench/experiment.py')
 e=importlib.util.module_from_spec(spec);spec.loader.exec_module(e)
@@ -28,6 +29,30 @@ class TestBenchExperiment(unittest.TestCase):
     def test_previous_skill(self):
         r=self.row('previous')
         self.assertIn('version: "0.5.0"',(self.dest/'packets'/r['packet']/'skills/humancraft/SKILL.md').read_text())
+    def test_frozen_v06_control_is_opt_in(self):
+        self.assertNotIn('frozen_control',self.plan)
+        self.assertNotIn('frozen_v06_archive',self.plan['sources'])
+        self.assertEqual(self.plan['trials'],1)
+        dest=Path(self.temp.name)/'frozen-v06-experiment'
+        plan=e.prepare(dest,self.cfg,3,13,frozen_v06=True)
+        row=next(x for x in plan['runs'] if x['arm']=='previous')
+        skill=dest/'packets'/row['packet']/'skills/humancraft/SKILL.md'
+        self.assertEqual(plan['trials'],3)
+        self.assertEqual(plan['frozen_control'],'v0.6.0')
+        self.assertEqual(plan['sources']['frozen_v06_archive'],e.V06_ARCHIVE_SHA256)
+        self.assertIn('version: "0.6.0"',skill.read_text(encoding='utf-8'))
+        self.assertEqual(sum(path.startswith('skills/humancraft/') for path in row['input_hashes']),25)
+        self.assertEqual(e.load_plan(dest)['sources']['frozen_v06_archive'],e.V06_ARCHIVE_SHA256)
+    def test_frozen_v06_plan_rejects_changed_archive(self):
+        dest=Path(self.temp.name)/'frozen-v06-digest-check'
+        plan=e.prepare(dest,self.cfg,1,13,frozen_v06=True)
+        self.assertEqual(plan['frozen_control'],'v0.6.0')
+        original_sha=e.sha
+        def changed_sha(path):
+            return '0'*64 if Path(path)==e.V06_ARCHIVE else original_sha(path)
+        with patch.object(e,'sha',side_effect=changed_sha):
+            with self.assertRaisesRegex(ValueError,'archive digest mismatch'):
+                e.load_plan(dest)
     def test_missing_runs_block(self):
         s=e.summarize(self.dest)
         self.assertEqual(s['status'],'NOT_RUN');self.assertEqual(s['release_gate'],'BLOCKED');self.assertEqual(len(s['missing']),32)

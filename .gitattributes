@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.zip binary
+bench/evidence-v06/recovery-rerun/** -text -whitespace
+bench/evidence-v061/ollama-search-pilot/** -text -whitespace

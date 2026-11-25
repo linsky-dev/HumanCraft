@@ -26,3 +26,5 @@ Issue record: ID, task/role, reproduction, observed vs expected, user harm, seve
 Evaluation modes: inspection (hypotheses), executable interaction tests (observed), representative human task testing (observed for sampled users), and longitudinal outcomes. Keep these separate. Do not claim measured outcomes from hypothetical personas or LLM judges. For skill benchmarking use identical prompts and environment with and without skill, repeat trials, blinded review, report completion, severe failures, tokens and runtime. Hold out scenarios; never optimize only for the public examples.
 
 Evidence IDs must be nonempty strings in a list. All gates marked N/A require independent scope review; no observed dimensions blocks a readiness claim. For critical pass claims, require relevant executed tests in addition to inspection.
+
+`audit_score.py` records an `executed-test-required` blocker when a gate is marked pass with inspection evidence alone. An observed failure remains a blocker even when found during inspection. Fix duplicate JSON fields or non-finite numbers before scoring. Run the script from the complete skill directory so its shared parser is available.

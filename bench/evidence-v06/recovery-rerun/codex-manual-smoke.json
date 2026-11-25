@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-24",
+  "scope": "Windows manual invocation smoke, synthetic design task",
+  "client_version": "codex-cli 0.171.0-alpha.13.2",
+  "model_requested": "gpt-6.2-sol",
+  "reasoning_requested": "medium",
+  "installation": "Project .agents/skills under a directory with Chinese characters and a space",
+  "invocation": "codex exec --ignore-user-config --ignore-rules --ephemeral --skip-git-repo-check --sandbox read-only -m gpt-6.2-sol -c model_reasoning_effort=\"medium\" --json <synthetic prompt with $humancraft>",
+  "prompt": "Use $humancraft. For a fictional inventory app, staff can cancel a pending stock adjustment while its server job is still running. Describe the expected outcome and one executable acceptance check. Read the applicable installed skill material. Use only this synthetic scenario and its installed skill. No network tools and no file writes.",
+  "turn_completed": true,
+  "explicit_invocation": "SKILL.md body reported as included by the agent",
+  "reference_loading": "ERROR: no successful local command logged and the agent reported local access blocked",
+  "automatic_trigger": "NOT_RUN",
+  "usage": {"input_tokens": 159068, "cached_input_tokens": 94464, "output_tokens": 836, "reasoning_output_tokens": 110},
+  "usage_scope": "Raw turn usage includes ambient client context. It is excluded from paired effect and overhead estimates.",
+  "evaluation_result": "No task implementation or independent oracle executed. Excluded from A/B/C/D analysis."
+}

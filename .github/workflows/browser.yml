@@ -4,21 +4,23 @@ permissions:
   contents: read
 jobs:
   browser:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
         engine: [chromium, firefox, webkit]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12'
       - run: pip install -r benchmark/requirements.txt
       - run: python -m playwright install --with-deps ${{ matrix.engine }}
       - run: python benchmark/run.py --engine ${{ matrix.engine }} --output evidence
       - run: python bench/verify.py --calibrate --engine ${{ matrix.engine }} --output evidence/bench-v05
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
           name: browser-${{ matrix.engine }}

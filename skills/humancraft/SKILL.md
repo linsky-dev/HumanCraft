@@ -4,7 +4,7 @@ description: >-
   Design, redesign, implement or audit human-centered products, software systems, features, user journeys, interfaces, forms, dashboards, onboarding, recovery flows, service workflows and AI interactions. Diagnose usability, confusing complexity, cognitive load, errors, accessibility and automation risks; produce testable design decisions and practical fixes, not merely attractive screens. Use for UX reviews, product requirements, interaction design, and user-facing changes. 适用于产品设计、系统功能设计、交互与界面、易用性审查、业务流程、异常恢复及人机协作。Do not activate for unrelated backend refactors or pure calculations; use quick depth for localized visual changes when they affect users.
 license: MIT
 metadata:
-  version: "0.6.0"
+  version: "0.6.1"
 ---
 # HumanCraft
 

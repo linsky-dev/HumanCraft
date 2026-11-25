@@ -1,0 +1,14 @@
+{
+  "model": "qwen3.5:9b-q4_K_M",
+  "harness": "ollama 0.21.0 local generate",
+  "config": "stale-search-explicit-guidance-seed-20261125",
+  "status": "completed",
+  "operator": "local-synthetic-pilot",
+  "seconds": 50.594,
+  "tokens": 4862,
+  "skill_invoked": null,
+  "packet": "run-00007-9dfba3d1165a",
+  "app_sha256": "26e77e2b5c6a3bf0ac736d75e31d43715ac707d2d317f5512890b266ad7a516d",
+  "plan_sha256": "675a617f73a43ccf3dd929aadd1a6304874e0d162120ae821bba6c22fe1037b1",
+  "provenance": "operator-attested; not cryptographically verified agent identity"
+}

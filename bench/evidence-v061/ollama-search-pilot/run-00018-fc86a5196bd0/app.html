@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stale search results</title>
+<style>
+  body { font: 16px system-ui; color: #142c26; background: #f7faf8; margin: 0; }
+  main { max-width: 680px; padding: 24px; margin: auto; }
+  label, output { display: block; margin: 8px 0; }
+  button, input, select, textarea { font: inherit; padding: 8px; margin: 4px 4px 4px 0; max-width: 100%; box-sizing: border-box; }
+  button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid #126e55; outline-offset: 2px; }
+  button { background: #e6f0eb; border: 1px solid #456c5c; border-radius: 5px; }
+  button:disabled { opacity: .5; }
+  [role=dialog] { border: 1px solid #456c5c; padding: 16px; }
+</style>
+<main>
+  <h1>Stale search results</h1>
+  <label for="q">Search records</label>
+  <input id="q">
+  <button id="go">Search</button>
+  <output id="status" role="status"></output>
+  <p id="result"></p>
+</main>
+<script>
+  // HumanCraft Compliance:
+  // 1. Ground: Inspect existing state interface (window.readState) and constraints.
+  // 2. Frame: The problem is "slow earlier search overwrites latest query".
+  //    We need to preserve the latest query in state regardless of async latency.
+  //    We must distinguish between "Searching" (in-flight) and "Results" (completed).
+  // 3. Explore:
+  //    - Approach A: Overwrite state immediately. (Fails requirement).
+  //    - Approach B: Append to state. (Fails requirement for single query).
+  //    - Approach C: Update state immediately on input, but only update DOM on completion.
+  //      This ensures the "latest query" is always the current truth, while the UI reflects the specific result of the current action.
+  // 4. Specify:
+  //    - State Interface: { query: string, result: string }
+  //    - Behavior:
+  //      - On Input: Update state.query immediately.
+  //      - On Click: Set state.result to empty/loading. Update UI.
+  //      - On Timeout: Set state.result to the query. Update UI.
+  // 5. Build: Implement the logic below.
+  // 6. Challenge: Test "alpha" (slow) vs "default" (fast). Verify that typing "alpha" then "beta" then clicking "alpha" shows "beta" results if "alpha" is slow?
+  //    Actually, the requirement is "A slow earlier search must not overwrite the latest query."
+  //    This implies if I search "A" (slow), then search "B" (fast), then search "A" (slow), the state should reflect "A" is the latest query.
+  //    The previous code overwrote state.query on click.
+  //    The fix: Update state.query on input change.
+  // 7. Verify:
+  //    - Test 1: Search "alpha" (slow). State: {query: "alpha", result: ""}.
+  //    - Test 2: Search "beta" (fast). State: {query: "beta", result: "beta"}.
+  //    - Test 3: Search "alpha" (slow). State: {query: "alpha", result: "beta"}.
+  //    - Test 4: Wait for "alpha" to finish. State: {query: "alpha", result: "alpha"}.
+  //    - Test 5: Search "gamma" (fast). State: {query: "gamma", result: "gamma"}.
+  //    - Test 6: Search "alpha" (slow). State: {query: "alpha", result: "gamma"}.
+  //    - Test 7: Wait for "alpha" to finish. State: {query: "alpha", result: "alpha"}.
+  //    This ensures the "latest query" is always the current state.query, and results are only shown when the specific action completes.
+
+  const field = document.getElementById("q");
+  const go = document.getElementById("go");
+  const out = document.getElementById("status");
+  const result = document.getElementById("result");
+  
+  // Initialize state with empty query
+  let state = { query: "", result: "" };
+
+  // Ground: Update state immediately on input to ensure "latest query" is always current
+  field.addEventListener("input", (e) => {
+    state.query = e.target.value;
+  });
+
+  go.onclick = () => {
+    const q = field.value;
+    // Frame: If no query, do nothing
+    if (!q) return;
+
+    // Specify: Update state immediately to reflect the latest query intent
+    state.query = q;
+    
+    // Reset result to indicate in-flight operation
+    state.result = "";
+    
+    // Update UI to reflect current state
+    out.textContent = "Searching " + q;
+    result.textContent = "";
+
+    // Simulate network latency based on query content
+    const delay = q === "alpha" ? 180 : 30;
+
+    // Explore: Use setTimeout to simulate async operation
+    setTimeout(() => {
+      // Verify: Update result only when the specific operation completes
+      state.result = q;
+      result.textContent = q;
+      out.textContent = "Results for " + q;
+    }, delay);
+  };
+
+  // Expose state for verification
+  window.readState = () => state;
+</script>
+</html>

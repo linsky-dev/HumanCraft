@@ -11,7 +11,7 @@ description: "HumanCraft installation, practical use, reproducible evidence and 
 
 A human-centered design skill for AI agents, informed by Donald Norman's design psychology and modern UX engineering. Move beyond visual polish: design real user outcomes, clear workflows, recoverable mistakes, accessible controls and honest automation. Works alongside existing coding and visual design skills.
 
-**v0.6.0 — public preview.** This repository contains the development source and public synthetic benchmark. The engineering tests are reproducible, but independent model uplift and actual human usability remain unmeasured. This is not a usability certification or a claim of competition placement.
+**v0.6.1 — development preview.** This repository contains the development source and public synthetic benchmark. The engineering tests are reproducible, but independent model uplift and actual human usability remain unmeasured. This is not a usability certification or a claim of competition placement.
 
 ## Quick start
 
@@ -37,7 +37,7 @@ Try: **“Use HumanCraft to audit and improve our batch import flow. Preserve ex
 | Human participants | NOT RUN |
 | Live backend and persistent state, cross-browser and client install | Not established |
 
-See [validation](docs/VALIDATION-v0.6.md), [public raw results](bench/evidence-v06/calibration/results.json), [benchmark protocol](bench/README.md), [human study](docs/HUMAN-STUDY.md), and [release gates](docs/RELEASE-GATES.md). Historical test records are retained; do not pool them as independent observations.
+See [international benchmarking](docs/research/INTERNATIONAL-BENCHMARK.md), [candidate evidence](docs/research/RELEASE-READINESS.md), [validation](docs/VALIDATION-v0.6.md), [public raw results](bench/evidence-v06/calibration/results.json), [benchmark protocol](bench/README.md), [human study](docs/HUMAN-STUDY.md), and [release gates](docs/RELEASE-GATES.md). Historical test records are retained; do not pool them as independent observations.
 
 ## Reproduce
 
@@ -50,7 +50,7 @@ python -m playwright install chromium
 python bench/verify.py --calibrate --output local-eval-results/calibration
 ```
 
-Use `python scripts/package.py --output dist` to build the standard skill archive and full source archive with SHA-256 checksums. Do not execute arbitrary agent submissions outside an independently isolated environment. See [contributing](CONTRIBUTING.md) and [security](SECURITY.md).
+Use `python scripts/package.py --output dist` to build the standard skill, [WorkBuddy](docs/WORKBUDDY-PACKAGING.md) and full source archives with SHA-256 checksums. Do not execute arbitrary agent submissions outside an independently isolated environment. See [contributing](CONTRIBUTING.md) and [security](SECURITY.md).
 
 ## License and attribution
 

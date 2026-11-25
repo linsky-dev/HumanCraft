@@ -1,0 +1,9 @@
+{
+  "seconds": 61.812,
+  "input_tokens": 3870,
+  "output_tokens": 1379,
+  "explicit_guidance_included": true,
+  "automatic_activation_observed": null,
+  "error": null,
+  "error_kind": null
+}

@@ -1,6 +1,7 @@
-import unittest, importlib.util
+import unittest, importlib.util, sys
 from pathlib import Path
 p=Path(__file__).resolve().parents[1]/'skills/humancraft/scripts/audit_score.py'
+sys.path.insert(0, str(p.parent))
 s=importlib.util.spec_from_file_location('score',p); m=importlib.util.module_from_spec(s); s.loader.exec_module(m)
 def sample():
     return {'dimensions':{k:{'score':4,'evidence_type':'observed_test','evidence':['T1']} for k in m.WEIGHTS},'gates':{k:{'status':'pass','evidence_type':'observed_test','evidence':['T1']} for k in m.GATES}}

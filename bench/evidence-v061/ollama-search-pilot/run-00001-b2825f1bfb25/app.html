@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stale search results</title>
+<style>
+  body { font: 16px system-ui; color: #142c26; background: #f7faf8; margin: 0; }
+  main { max-width: 680px; padding: 24px; margin: auto; }
+  label, output { display: block; margin: 8px 0; }
+  button, input, select, textarea { font: inherit; padding: 8px; margin: 4px 4px 4px 0; max-width: 100%; box-sizing: border-box; }
+  button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid #126e55; outline-offset: 2px; }
+  button { background: #e6f0eb; border: 1px solid #456c5c; border-radius: 5px; }
+  button:disabled { opacity: .5; }
+  [role=dialog] { border: 1px solid #456c5c; padding: 16px; }
+</style>
+<main>
+  <h1>Stale search results</h1>
+  <label for="q">Search records</label>
+  <input id="q">
+  <button id="go">Search</button>
+  <output id="status" role="status"></output>
+  <p id="result"></p>
+</main>
+<script>
+  const field = document.getElementById("q");
+  const go = document.getElementById("go");
+  const out = document.getElementById("status");
+  const result = document.getElementById("result");
+  
+  let seq = 0;
+  let state = { query: "", result: "" };
+  
+  // Store the latest search parameters to prevent overwriting
+  let latestSearch = {
+    query: "",
+    timeoutId: null
+  };
+
+  go.onclick = () => {
+    let q = field.value;
+    let n = ++seq;
+    
+    // Clear any pending slow search from previous interactions
+    if (latestSearch.timeoutId) {
+      clearTimeout(latestSearch.timeoutId);
+      latestSearch.timeoutId = null;
+    }
+
+    // Update state immediately
+    state.query = q;
+    out.textContent = "Searching " + q;
+    result.textContent = "";
+
+    // Determine delay based on query content
+    let delay = q === "alpha" ? 180 : 30;
+
+    latestSearch.timeoutId = setTimeout(() => {
+      // Only update if this is still the latest search (seq check)
+      if (n === seq) {
+        state.result = q;
+        result.textContent = q;
+        out.textContent = "Results for " + q;
+      }
+    }, delay);
+  };
+
+  // Allow clearing the search field to reset state
+  field.oninput = () => {
+    if (latestSearch.timeoutId) {
+      clearTimeout(latestSearch.timeoutId);
+      latestSearch.timeoutId = null;
+    }
+    state.query = "";
+    state.result = "";
+    out.textContent = "";
+    result.textContent = "";
+  };
+
+  window.readState = () => state;
+</script>
+</html>

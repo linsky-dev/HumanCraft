@@ -11,7 +11,7 @@ description: "HumanCraft 中文使用说明、可复现证据及社区贡献指�
 
 基于诺曼设计心理学与现代 UX 工程，帮助 AI 设计更合理的产品、系统、功能、界面及人机协作流程。除了视觉审美，更重视任务完成、异常恢复、数据一致性、权限和用户控制权。
 
-当前版本 **v0.6.0 公开预览版**。本仓库包含完整开发源码及公开合成评测。独立 AI 模型增益和真实用户体验尚未测量，不宣称已达到冠军水平或获得可用性认证。
+当前版本 **v0.6.1 开发预览版**。本仓库包含完整开发源码及公开合成评测。独立 AI 模型增益和真实用户体验尚未测量，不宣称已达到冠军水平或获得可用性认证。
 
 ## 安装使用
 
@@ -30,6 +30,8 @@ description: "HumanCraft 中文使用说明、可复现证据及社区贡献指�
 - 原始实验记录：[结果 JSON](bench/evidence-v06/calibration/results.json)、[验证说明](docs/VALIDATION-v0.6.md)、[评测协议](bench/README.md)、[真实用户研究](docs/HUMAN-STUDY.md)。
 
 ## 复现
+
+本地可生成标准技能包、[WorkBuddy 专用包](docs/WORKBUDDY-PACKAGING.md)和完整开发包。详见[国际对标](docs/research/INTERNATIONAL-BENCHMARK.md)及[候选版证据](docs/research/RELEASE-READINESS.md)。
 
 ```sh
 python -m pip install PyYAML==6.0.3

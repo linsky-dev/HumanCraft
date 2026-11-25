@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Search Flow</title>
+<style>
+  body {
+    font: 16px system-ui;
+    color: #142c26;
+    background: #f7faf8;
+    margin: 0;
+  }
+  main {
+    max-width: 680px;
+    padding: 24px;
+    margin: auto;
+  }
+  label, output {
+    display: block;
+    margin: 8px 0;
+  }
+  button, input, select, textarea {
+    font: inherit;
+    padding: 8px;
+    margin: 4px 4px 4px 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 3px solid #126e55;
+    outline-offset: 2px;
+  }
+  button {
+    background: #e6f0eb;
+    border: 1px solid #456c5c;
+    border-radius: 5px;
+  }
+  button:disabled {
+    opacity: .5;
+  }
+  [role="dialog"] {
+    border: 1px solid #456c5c;
+    padding: 16px;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Search records</h1>
+  <label for="q">Search query</label>
+  <input id="q" type="text" placeholder="Enter a search term">
+  <button id="go">Search</button>
+  <output id="status" role="status"></output>
+  <p id="result"></p>
+</main>
+<script>
+  const field = document.getElementById("q");
+  const go = document.getElementById("go");
+  const out = document.getElementById("status");
+  const result = document.getElementById("result");
+
+  // State interface: { query, result }
+  let state = { query: "", result: "" };
+
+  // Debounce helper to ensure slow searches don't overwrite fast ones
+  let debounceTimer = null;
+
+  go.onclick = () => {
+    const q = field.value;
+    if (!q) {
+      state.query = "";
+      state.result = "";
+      out.textContent = "Please enter a query.";
+      result.textContent = "";
+      return;
+    }
+
+    // Always update the latest query immediately
+    state.query = q;
+    out.textContent = "Searching " + q;
+    result.textContent = "";
+
+    // Determine delay based on query content (simulating slow vs fast search)
+    const isSlow = q === "alpha";
+    const delay = isSlow ? 180 : 30;
+
+    // Clear any pending slow search to prevent overwriting the latest query
+    if (debounceTimer) {
+      clearTimeout(debounceTimer);
+      debounceTimer = null;
+    }
+
+    // Start the new search
+    debounceTimer = setTimeout(() => {
+      state.result = q;
+      out.textContent = "Results for " + q;
+      result.textContent = "Found: " + q;
+    }, delay);
+  };
+
+  // Allow Enter key to trigger search
+  field.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      go.click();
+    }
+  });
+
+  // Expose state for external access
+  window.readState = () => state;
+</script>
+</body>
+</html>

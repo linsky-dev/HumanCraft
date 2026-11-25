@@ -5,6 +5,12 @@ description: "HumanCraft version history, scope and evidence."
 
 # Changelog
 
+## 0.6.1 — development preview
+
+- Require executed test evidence for passing critical gates and reject ambiguous JSON in the evidence CLIs.
+- Restore and verify the complete v0.6.0 development history; display the project icon in both READMEs.
+- Build separate standard, WorkBuddy and full source archives with SHA-256 checksums.
+
 ## 0.6.0 — public preview candidate
 
 - Refined visual craft and proportionate output guidance.

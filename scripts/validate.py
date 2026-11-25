@@ -10,6 +10,8 @@ for p in files:
     assert isinstance(m.get('name'),str) and re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',m['name']) and len(m['name'])<=64,p
     assert isinstance(m.get('description'),str) and 0<len(m['description'])<=1024,p
     if p.name=='SKILL.md':
+        # 市场扩展字段仅在专用 ZIP 构建时加入。
+        assert set(m) <= {'name','description','license','compatibility','metadata','allowed-tools'}, p
         assert m['name']==p.parent.name and len(t.splitlines())<=500,p
         assert all(isinstance(k,str) and isinstance(v,str) for k,v in m.get('metadata',{}).items()),p
         for link in re.findall(r'\]\(([^)]+)\)',body):

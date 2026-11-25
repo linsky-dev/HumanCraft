@@ -1,0 +1,60 @@
+{
+  "scope": "public development synthetic DOM workflow; in-memory state, no live backend, no independent agent or human inference",
+  "engine": "chromium",
+  "browser": "157.0.8103.79",
+  "verifier_sha256": "e8d5b139cf3072268dc7f5be46183a9bae02c1096b9e8550f3a693ffc5e7a52d",
+  "results": [
+    {
+      "task": "stale-search",
+      "variant": "submission",
+      "viewport": 1280,
+      "scenario": "normal",
+      "result": "PASS",
+      "expected": null,
+      "critical": false,
+      "reason": "",
+      "seconds": 0.922,
+      "app_sha256": "d6c58a1a1878a739fd5c34afb699380fe6e549d1f90ed8e388cc234b892c3f35",
+      "screenshot": "stale-search-submission-1280-normal.png"
+    },
+    {
+      "task": "stale-search",
+      "variant": "submission",
+      "viewport": 1280,
+      "scenario": "adverse",
+      "result": "FAIL",
+      "expected": null,
+      "critical": false,
+      "reason": "stale result overwrote latest search",
+      "seconds": 0.438,
+      "app_sha256": "d6c58a1a1878a739fd5c34afb699380fe6e549d1f90ed8e388cc234b892c3f35",
+      "screenshot": "stale-search-submission-1280-adverse.png"
+    },
+    {
+      "task": "stale-search",
+      "variant": "submission",
+      "viewport": 390,
+      "scenario": "normal",
+      "result": "PASS",
+      "expected": null,
+      "critical": false,
+      "reason": "",
+      "seconds": 0.687,
+      "app_sha256": "d6c58a1a1878a739fd5c34afb699380fe6e549d1f90ed8e388cc234b892c3f35",
+      "screenshot": "stale-search-submission-390-normal.png"
+    },
+    {
+      "task": "stale-search",
+      "variant": "submission",
+      "viewport": 390,
+      "scenario": "adverse",
+      "result": "FAIL",
+      "expected": null,
+      "critical": false,
+      "reason": "stale result overwrote latest search",
+      "seconds": 0.5,
+      "app_sha256": "d6c58a1a1878a739fd5c34afb699380fe6e549d1f90ed8e388cc234b892c3f35",
+      "screenshot": "stale-search-submission-390-adverse.png"
+    }
+  ]
+}

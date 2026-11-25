@@ -2,9 +2,12 @@
 """Frozen public development tasks; export independent packets and grade submitted code.
 No model calls. Operator supplies independent fresh sessions; this is not a security sandbox."""
 import argparse, hashlib, json, math, random, re, shutil, statistics, subprocess, sys, time, zipfile
+from pathlib import PurePosixPath
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 ARMS=('baseline','generic','previous','candidate')
+V06_ARCHIVE=ROOT/'controls/v06.zip'
+V06_ARCHIVE_SHA256='a216e4fe57716b63c7e1f5ad65e70023fcc54064e29f4716048844e67a14c27d'
 def digest_bytes(b):return hashlib.sha256(b).hexdigest()
 def sha(p):return digest_bytes(p.read_bytes())
 def canonical(x):return json.dumps(x,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()
@@ -13,19 +16,24 @@ def write(p,data):p.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n'
 def require(ok,msg):
     if not ok:raise ValueError(msg)
 def file_hashes(path):return {str(p.relative_to(path)).replace('\\','/'):sha(p) for p in sorted(path.rglob('*')) if p.is_file() and '__pycache__' not in p.parts}
-def source_manifest():
-    return {'verifier':sha(ROOT/'verify.py'),'protocol':sha(Path(__file__)),
-            'tasks':file_hashes(ROOT/'tasks'),'controls':file_hashes(ROOT/'controls'),
-            'candidate':file_hashes(ROOT.parent/'skills/humancraft')}
-def prepare(dest,configs,trials,seed):
+def source_manifest(frozen_v06=False):
+    manifest={'verifier':sha(ROOT/'verify.py'),'protocol':sha(Path(__file__)),
+              'tasks':file_hashes(ROOT/'tasks'),'controls':file_hashes(ROOT/'controls'),
+              'candidate':file_hashes(ROOT.parent/'skills/humancraft')}
+    if frozen_v06:
+        require(sha(V06_ARCHIVE)==V06_ARCHIVE_SHA256,'frozen v0.6 archive digest mismatch')
+        manifest['frozen_v06_archive']=V06_ARCHIVE_SHA256
+    return manifest
+def prepare(dest,configs,trials,seed,frozen_v06=False):
     require(type(trials) is int and trials>0,'positive trials required')
+    require(type(frozen_v06) is bool,'frozen_v06 must be boolean')
     require(isinstance(configs,list) and configs,'configuration list required')
     for c in configs:
         require(set(c)=={'model','harness','config'} and all(isinstance(v,str) and v.strip() for v in c.values()),'config fields')
     require(len({tuple(sorted(c.items())) for c in configs})==len(configs),'duplicate configuration')
     require(not dest.exists(),'destination must be new')
     dest.mkdir(parents=True);(dest/'packets').mkdir()
-    manifest=source_manifest()
+    manifest=source_manifest(frozen_v06)
     tasks=[read(x) for x in sorted((ROOT/'tasks').glob('*/task.json'))]
     runs=[dict(c,task=t['id'],trial=i,arm=a) for c in configs for t in tasks for i in range(1,trials+1) for a in ARMS]
     rng=random.Random(seed);rng.shuffle(runs)
@@ -38,20 +46,30 @@ def prepare(dest,configs,trials,seed):
         if r['arm']=='candidate':shutil.copytree(ROOT.parent/'skills/humancraft',d/'skills/humancraft',ignore=shutil.ignore_patterns('__pycache__'))
         elif r['arm']=='generic':shutil.copytree(ROOT/'controls/generic-ux',d/'skills/generic-ux')
         elif r['arm']=='previous':
-            with zipfile.ZipFile(ROOT/'controls/v05.zip') as z:
+            control_archive=V06_ARCHIVE if frozen_v06 else ROOT/'controls/v05.zip'
+            with zipfile.ZipFile(control_archive) as z:
                 for item in z.infolist():
-                    rel=Path(item.filename)
-                    require(not rel.is_absolute() and '..' not in rel.parts and rel.parts[0]=='humancraft','invalid previous skill archive')
+                    rel=PurePosixPath(item.filename)
+                    require(not rel.is_absolute() and '..' not in rel.parts and rel.parts[0]=='humancraft' and '\\' not in item.filename,'invalid previous skill archive')
+                    if frozen_v06:
+                        mode=(item.external_attr>>16)&0o170000
+                        require(not item.is_dir() and mode in (0,0o100000),'invalid frozen v0.6 archive member')
+                if frozen_v06:
+                    names=[item.filename for item in z.infolist()]
+                    require(len(names)==25 and len(set(names))==25 and 'humancraft/SKILL.md' in names,'invalid frozen v0.6 archive contents')
                 z.extractall(d/'skills')
         (d/'TASK.txt').write_text(specs[r['task']]['prompt']+'\n\nModify app.html in this workspace. If relevant guidance exists in skills/, use it. Keep the task self-contained, with no external services or dependencies. Do not change the state interface. Return the completed file; do not invent test results.\n',encoding='utf-8')
         r['input_hashes']=file_hashes(d)
     plan={'version':'0.6.0','configs':configs,'scope':'public development tasks; not held-out','seed':seed,'trials':trials,'sources':manifest,'runs':runs}
+    if frozen_v06:plan['frozen_control']='v0.6.0'
     write(dest/'plan.json',plan);(dest/'plan.sha256').write_text(digest_bytes(canonical(plan))+'\n')
     return plan
 def load_plan(dest):
     plan=read(dest/'plan.json')
     require(digest_bytes(canonical(plan))==(dest/'plan.sha256').read_text().strip(),'plan digest mismatch')
-    require(plan['sources']==source_manifest(),'frozen source changed')
+    frozen_control=plan.get('frozen_control')
+    require(frozen_control in (None,'v0.6.0'),'unsupported frozen control')
+    require(plan['sources']==source_manifest(frozen_control=='v0.6.0'),'frozen source changed')
     require(plan.get('version')=='0.6.0','unsupported plan version')
     configs=plan['configs'];trials=plan['trials']
     require(type(trials) is int and trials>0 and isinstance(configs,list) and bool(configs),'invalid matrix specification')
@@ -199,7 +217,7 @@ def summarize(dest):
     return dict(status=status,descriptive_thresholds=thresholds,planned=len(plan['runs']),graded=recorded,missing=missing,infrastructure_errors=errors,candidate_critical_failures=critical,candidate_unknown_critical=unknown_critical,release_gate='BLOCKED' if missing or errors or critical or unknown_critical else 'COVERAGE_ONLY_NOT_CERTIFIED',strata=reports,scope='public development synthetic tasks; no holdout, no human usability evidence, operator-attested provenance')
 def main():
     a=argparse.ArgumentParser(description=__doc__);s=a.add_subparsers(dest='cmd',required=True)
-    p=s.add_parser('prepare');p.add_argument('destination',type=Path);p.add_argument('configs',type=Path);p.add_argument('--trials',type=int,default=3);p.add_argument('--seed',type=int,default=20261124)
+    p=s.add_parser('prepare');p.add_argument('destination',type=Path);p.add_argument('configs',type=Path);p.add_argument('--trials',type=int,default=3);p.add_argument('--seed',type=int,default=20261124);p.add_argument('--frozen-v06-control',action='store_true',help='use the frozen v0.6 skill as the previous arm instead of the historical v0.5 control')
     p=s.add_parser('record');p.add_argument('destination',type=Path);p.add_argument('packet');p.add_argument('metadata',type=Path)
     p=s.add_parser('run');p.add_argument('destination',type=Path);p.add_argument('packet');p.add_argument('command',type=Path);p.add_argument('--operator',required=True);p.add_argument('--timeout',type=int,default=600)
     p=s.add_parser('grade');p.add_argument('destination',type=Path);p.add_argument('packet');p.add_argument('--executable')
@@ -207,7 +225,7 @@ def main():
     x=a.parse_args()
     try:
         if x.cmd=='prepare':
-            p=prepare(x.destination,read(x.configs),x.trials,x.seed);print(f'{len(p["runs"])} packets prepared, no model runs')
+            p=prepare(x.destination,read(x.configs),x.trials,x.seed,x.frozen_v06_control);print(f'{len(p["runs"])} packets prepared, no model runs')
         elif x.cmd=='record':record(x.destination,x.packet,read(x.metadata));print('submission frozen')
         elif x.cmd=='run':run_external(x.destination,x.packet,read(x.command),x.operator,x.timeout);print('local execution recorded; inspect logs')
         elif x.cmd=='grade':grade(x.destination,x.packet,x.executable);print('grade recorded; inspect grade.json')

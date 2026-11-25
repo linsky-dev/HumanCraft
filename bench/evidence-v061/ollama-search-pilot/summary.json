@@ -1,0 +1,133 @@
+{
+  "status": "INCOMPLETE",
+  "descriptive_thresholds": [
+    {
+      "model": "qwen3.5:9b-q4_K_M",
+      "harness": "ollama 0.21.0 local generate",
+      "config": "stale-search-explicit-guidance-seed-20261125",
+      "baseline_delta_target_met": false,
+      "generic_delta_target_met": true,
+      "baseline_interval_excludes_zero": false,
+      "generic_interval_excludes_zero": false
+    }
+  ],
+  "planned": 32,
+  "graded": 4,
+  "missing": [
+    "run-00002-c0ba448fdfc9",
+    "run-00003-c92c975d8cba",
+    "run-00004-04fb53c70a70",
+    "run-00005-c05ccf9e4f42",
+    "run-00006-531ac1f03b05",
+    "run-00008-70d4babeab11",
+    "run-00009-767964403c6a",
+    "run-00010-b45b1ede4247",
+    "run-00011-268c71cc128f",
+    "run-00012-6a013a29c5c1",
+    "run-00013-32cd704540b7",
+    "run-00015-9c170cab9e0c",
+    "run-00016-ec9be99c648c",
+    "run-00017-bcdee0284275",
+    "run-00019-4db332f46174",
+    "run-00020-127f7d21e6ef",
+    "run-00021-1ea71fe52838",
+    "run-00022-ac7f89db0d45",
+    "run-00023-e4806744c1d7",
+    "run-00024-d684b09acdcd",
+    "run-00025-89f6ea96e66b",
+    "run-00026-942c2fa35841",
+    "run-00027-50abcc734f07",
+    "run-00028-fff3fcec78c8",
+    "run-00029-b25f905ef80c",
+    "run-00030-711da6d0acfd",
+    "run-00031-775332cfb2b5",
+    "run-00032-eb7e97067cc0"
+  ],
+  "infrastructure_errors": [],
+  "candidate_critical_failures": [],
+  "candidate_unknown_critical": [],
+  "release_gate": "BLOCKED",
+  "strata": [
+    {
+      "model": "qwen3.5:9b-q4_K_M",
+      "harness": "ollama 0.21.0 local generate",
+      "config": "stale-search-explicit-guidance-seed-20261125",
+      "complete_pairs": 1,
+      "arms": {
+        "baseline": {
+          "failed_check_total": 0,
+          "failed_check_coverage": 1,
+          "task_macro_pass_rate": 1,
+          "token_median": 1311,
+          "token_coverage": 1,
+          "seconds_median": 41.906,
+          "seconds_coverage": 1,
+          "invocations_observed": 0,
+          "invocation_known": 0,
+          "observed_critical_failures": 0,
+          "agent_failures": 0
+        },
+        "generic": {
+          "failed_check_total": 4,
+          "failed_check_coverage": 1,
+          "task_macro_pass_rate": 0,
+          "token_median": 1499,
+          "token_coverage": 1,
+          "seconds_median": 35.641,
+          "seconds_coverage": 1,
+          "invocations_observed": 0,
+          "invocation_known": 0,
+          "observed_critical_failures": 0,
+          "agent_failures": 0
+        },
+        "previous": {
+          "failed_check_total": 2,
+          "failed_check_coverage": 1,
+          "task_macro_pass_rate": 0,
+          "token_median": 5249,
+          "token_coverage": 1,
+          "seconds_median": 61.812,
+          "seconds_coverage": 1,
+          "invocations_observed": 0,
+          "invocation_known": 0,
+          "observed_critical_failures": 0,
+          "agent_failures": 0
+        },
+        "candidate": {
+          "failed_check_total": 0,
+          "failed_check_coverage": 1,
+          "task_macro_pass_rate": 1,
+          "token_median": 4862,
+          "token_coverage": 1,
+          "seconds_median": 50.594,
+          "seconds_coverage": 1,
+          "invocations_observed": 0,
+          "invocation_known": 0,
+          "observed_critical_failures": 0,
+          "agent_failures": 0
+        }
+      },
+      "comparisons": {
+        "baseline": {
+          "tasks": 1,
+          "paired_delta_pp": 0,
+          "task_cluster_bootstrap_95_pp": null,
+          "scope": "descriptive uncertainty across public tasks; not generalization"
+        },
+        "generic": {
+          "tasks": 1,
+          "paired_delta_pp": 100,
+          "task_cluster_bootstrap_95_pp": null,
+          "scope": "descriptive uncertainty across public tasks; not generalization"
+        },
+        "previous": {
+          "tasks": 1,
+          "paired_delta_pp": 100,
+          "task_cluster_bootstrap_95_pp": null,
+          "scope": "descriptive uncertainty across public tasks; not generalization"
+        }
+      }
+    }
+  ],
+  "scope": "public development synthetic tasks; no holdout, no human usability evidence, operator-attested provenance"
+}
