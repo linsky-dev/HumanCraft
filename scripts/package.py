@@ -8,7 +8,6 @@ import re
 import zipfile
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills/humancraft"
 WORKBUDDY_METADATA = ROOT / "scripts/workbuddy-extension.json"
@@ -96,6 +95,8 @@ def archive(destination, entries, prefix, overrides=None):
         for source_path, relative_path in entries:
             archive_path = f"{prefix}/{relative_path.as_posix()}"
             info = zipfile.ZipInfo(archive_path, date_time=(2026, 11, 24, 0, 0, 0))
+            # 固定 ZIP 创建平台标志，否则 Windows 与 Linux 的归档字节不同。
+            info.create_system = 3
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             content = content_overrides[relative_path] if relative_path in content_overrides else source_path.read_bytes()

@@ -168,6 +168,12 @@ class PackagingTests(unittest.TestCase):
             self.assertEqual(filename, archive_path.name)
             self.assertEqual(expected_hash, hashlib.sha256(archive_path.read_bytes()).hexdigest())
 
+    def test_zip_platform_metadata_is_stable(self):
+        for suffix in ("skill", "workbuddy", "full"):
+            archive_path = self.archive_path(suffix)
+            with zipfile.ZipFile(archive_path) as archive:
+                self.assertTrue(all(entry.create_system == 3 for entry in archive.infolist()))
+
     def test_archives_are_reproducible(self):
         second_output = Path(self.temporary_directory.name) / "second"
         subprocess.run(
