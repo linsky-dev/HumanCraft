@@ -9,11 +9,11 @@ description: "HumanCraft installation, practical use, reproducible evidence and 
 
 A human-centered design skill for AI agents, informed by Donald Norman's design psychology and modern UX engineering. Move beyond visual polish: design real user outcomes, clear workflows, recoverable mistakes, accessible controls and honest automation. Works alongside existing coding and visual design skills.
 
-**v0.6.0 — public preview candidate.** The project is prepared for open-source distribution. The engineering tests are reproducible, but independent model uplift and actual human usability remain unmeasured. This is not a usability certification or a claim of competition placement.
+**v0.6.0 — public preview.** This repository contains the development source and public synthetic benchmark. The engineering tests are reproducible, but independent model uplift and actual human usability remain unmeasured. This is not a usability certification or a claim of competition placement.
 
 ## Quick start
 
-Copy the entire `skills/humancraft/` directory into your client's supported Agent Skills folder, or import its ZIP if supported. Once the repository is published, compatible installers may support `npx skills add linsky-dev/HumanCraft --skill humancraft`. Client-specific discovery and import have not been independently verified. No network, Python runtime or third-party API is required for the core instructions; optional local scripts use Python's standard library.
+Copy the entire `skills/humancraft/` directory into your client's supported Agent Skills folder, or import its ZIP if supported. Compatible installers may support `npx skills add linsky-dev/HumanCraft --skill humancraft`. Client-specific discovery and import have not been independently verified. No network, Python runtime or third-party API is required for the core instructions; optional local scripts use Python's standard library.
 
 Try: **“Use HumanCraft to audit and improve our batch import flow. Preserve existing features, identify the root causes, define unchanged acceptance tests, and verify actual state and recovery.”**
 
@@ -22,7 +22,7 @@ Try: **“Use HumanCraft to audit and improve our batch import flow. Preserve ex
 - Task-appropriate depth: quick for small edits, standard for features, critical for consequential workflows.
 - Human-centered discovery, visual craft, interaction, complexity management, resilience and human–AI control.
 - Twelve behavior contracts, independent acceptance checks, evidence firewall and honest handoff.
-- Seventeen reference files including source notes; 44 behavior cases and 24 activation prompts; optional evidence scoring and trace checking.
+- Eighteen reference files including source notes; 44 behavior cases and 24 activation prompts; optional evidence scoring and trace checking.
 - Public synthetic workflow lab, frozen four-arm agent comparison, and a human research protocol. No telemetry or hidden network calls in the core skill.
 
 ## Evidence, not claims
