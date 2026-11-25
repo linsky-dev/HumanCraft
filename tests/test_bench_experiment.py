@@ -28,7 +28,7 @@ class TestBenchExperiment(unittest.TestCase):
             self.assertFalse(any('verify.py' in x or 'reference.html' in x for x in paths))
     def test_previous_skill(self):
         r=self.row('previous')
-        self.assertIn('version: "0.5.0"',(self.dest/'packets'/r['packet']/'skills/humancraft/SKILL.md').read_text())
+        self.assertIn('version: "0.5.0"',(self.dest/'packets'/r['packet']/'skills/humancraft/SKILL.md').read_text(encoding='utf-8'))
     def test_frozen_v06_control_is_opt_in(self):
         self.assertNotIn('frozen_control',self.plan)
         self.assertNotIn('frozen_v06_archive',self.plan['sources'])
