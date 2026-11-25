@@ -5,6 +5,8 @@ description: "HumanCraft installation, practical use, reproducible evidence and 
 
 # HumanCraft
 
+<img src="assets/humancraft-avatar.png" alt="HumanCraft skill icon" width="96">
+
 **Design for humans, not just screens.** · [简体中文](README.zh-CN.md)
 
 A human-centered design skill for AI agents, informed by Donald Norman's design psychology and modern UX engineering. Move beyond visual polish: design real user outcomes, clear workflows, recoverable mistakes, accessible controls and honest automation. Works alongside existing coding and visual design skills.

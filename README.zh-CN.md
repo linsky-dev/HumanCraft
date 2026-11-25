@@ -5,6 +5,8 @@ description: "HumanCraft 中文使用说明、可复现证据及社区贡献指�
 
 # HumanCraft · 人本设计智能体技能集
 
+<img src="assets/humancraft-avatar.png" alt="HumanCraft 技能图标" width="96">
+
 **为真实的人设计，而不只是为屏幕设计。** [English](README.md)
 
 基于诺曼设计心理学与现代 UX 工程，帮助 AI 设计更合理的产品、系统、功能、界面及人机协作流程。除了视觉审美，更重视任务完成、异常恢复、数据一致性、权限和用户控制权。
