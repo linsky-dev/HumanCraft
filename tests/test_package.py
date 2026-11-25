@@ -168,6 +168,13 @@ class PackagingTests(unittest.TestCase):
             self.assertEqual(filename, archive_path.name)
             self.assertEqual(expected_hash, hashlib.sha256(archive_path.read_bytes()).hexdigest())
 
+    def test_full_zip_uses_case_sensitive_archive_path_order(self):
+        with zipfile.ZipFile(self.archive_path("full")) as archive:
+            prefix = f"HumanCraft-v{package.release_version()}/bench/"
+            entries = [name for name in archive.namelist() if name.startswith(prefix)]
+        self.assertIn(prefix + "README.md", entries)
+        self.assertEqual(entries, sorted(entries))
+
     def test_zip_platform_metadata_is_stable(self):
         for suffix in ("skill", "workbuddy", "full"):
             archive_path = self.archive_path(suffix)

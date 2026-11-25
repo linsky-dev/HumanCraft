@@ -65,7 +65,8 @@ def files(base, roots, optional=()):
                 continue
             raise ValueError(f"missing release path: {path}")
 
-        candidates = sorted(path.rglob("*")) if path.is_dir() else [path]
+        # 按 ZIP 路径文本排序，避免 WindowsPath 的大小写折叠改变顺序。
+        candidates = sorted(path.rglob("*"), key=lambda child: child.relative_to(base).as_posix()) if path.is_dir() else [path]
         for file_path in candidates:
             relative_path = file_path.relative_to(base)
             if any(part in EXCLUDED or part.startswith(".env") for part in relative_path.parts):
